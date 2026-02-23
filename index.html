@@ -1,0 +1,64 @@
+<!--  
+  Yogi Aditya 
+  2320013 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookArchive - Masuk</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <div class="auth-container">
+        <h1>BookArchive</h1>
+        
+        <div id="auth-forms">
+            <form id="login-form">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="login-email" placeholder="contoh@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Kata Sandi</label>
+                    <input type="password" id="login-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit">Masuk</button>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+                    Belum memiliki akun? <a href="#" onclick="toggleAuth('register')" style="color: var(--accent-ink); text-decoration: none; font-weight: bold;">Registrasi</a>
+                </p>
+            </form>
+
+            <form id="register-form" style="display: none;">
+                <div class="form-group">
+                    <label>Nama Lengkap</label>
+                    <input type="text" id="reg-name" placeholder="Nama lengkap atau inisial" required>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="email" id="reg-email" placeholder="contoh@email.com" required>
+                </div>
+                <div class="form-group">
+                    <label>Kata Sandi</label>
+                    <input type="password" id="reg-password" placeholder="••••••••" required>
+                </div>
+                <button type="submit">Daftar Akun</button>
+                <p style="text-align: center; margin-top: 20px; font-size: 0.9rem;">
+                    Sudah memiliki akun? <a href="#" onclick="toggleAuth('login')" style="color: var(--accent-ink); text-decoration: none; font-weight: bold;">Masuk</a>
+                </p>
+            </form>
+        </div>
+        <p id="error-msg" style="color: #a00; text-align: center; font-size: 0.9rem; margin-top: 10px;"></p>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/auth.js"></script>
+</body>
+</html>

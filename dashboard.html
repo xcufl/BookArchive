@@ -1,0 +1,101 @@
+<!--  
+  Yogi Aditya 
+  2320013 
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BookArchive - Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <aside class="sidebar">
+        <h2 id="user-greeting" style="font-size: 1.5rem; margin-bottom: 30px;"></h2>
+        
+        <nav>
+            <a href="#" class="sidebar-link" onclick="loadEntries();">Beranda</a>
+            <a href="#" class="sidebar-link" onclick="openModal('add-book-modal');">+ Tambah Data</a>
+            <a href="#" class="sidebar-link" onclick="logout()" style="margin-top: 50px; color: #800;">Keluar</a>
+        </nav>
+    </aside>
+
+
+    <main class="main-content">
+        <header class="archive-header">
+            <h1>BookArchive</h1>
+            <p style="color: #666;">Manajemen catatan dan progres pembacaan buku.</p>
+        </header>
+        
+        <div id="archive-entries">
+            <p style="text-align: center;">Memuat data...</p>
+        </div>
+    </main>
+
+    <div id="add-book-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('add-book-modal')">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">Tambah Data Buku</h2>
+            <form id="add-book-form">
+                <div class="form-group">
+                    <label>Judul Buku</label>
+                    <input type="text" id="book-title" placeholder="Masukkan judul buku" required>
+                </div>
+                <div class="form-group">
+                    <label>Penulis</label>
+                    <input type="text" id="book-author" placeholder="Nama lengkap penulis" required>
+                </div>
+                <div class="form-group">
+                    <label>Total Halaman</label>
+                    <input type="number" id="book-pages" placeholder="Jumlah total halaman" required min="1">
+                </div>
+                <div class="form-group">
+                    <label>Rating</label>
+                    <div class="star-rating">
+                        <input type="radio" id="star5" name="rating" value="5" /><label for="star5" title="5 stars">★</label>
+                        <input type="radio" id="star4" name="rating" value="4" /><label for="star4" title="4 stars">★</label>
+                        <input type="radio" id="star3" name="rating" value="3" /><label for="star3" title="3 stars">★</label>
+                        <input type="radio" id="star2" name="rating" value="2" /><label for="star2" title="2 stars">★</label>
+                        <input type="radio" id="star1" name="rating" value="1" /><label for="star1" title="1 star">★</label>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Catatan/Review</label>
+                    <textarea id="book-thoughts" placeholder="Masukkan ringkasan atau catatan analisis buku" rows="4" required></textarea>
+                </div>
+                <button type="submit">Simpan Data</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="update-progress-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn" onclick="closeModal('update-progress-modal')">&times;</span>
+            <h2 style="text-align: center; margin-bottom: 20px;">Update Progres Baca</h2>
+            <form id="update-progress-form">
+                <input type="hidden" id="update-book-id">
+                <div class="form-group">
+                    <p id="update-book-info" style="text-align: center; font-style: italic; margin-bottom: 15px; color: var(--dim-ink);"></p>
+                    <label>Halaman Terakhir yang Dibaca</label>
+                    <input type="number" id="update-current-page" required min="0">
+                </div>
+                <button type="submit">Update Progres</button>
+            </form>
+        </div>
+    </div>
+
+    <div id="toast" class="toast"></div>
+
+    <button class="mobile-add-btn" onclick="openModal('add-book-modal')">
+        + Tambah Data
+    </button>
+
+    <script src="js/firebase-config.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
